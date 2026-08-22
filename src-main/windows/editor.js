@@ -66,7 +66,7 @@ class OpenedFile {
     }
 
     if (this.type === TYPE_SAMPLE) {
-      const sampleRoot = path.resolve(__dirname, '../../dist-extensions/samples/');
+      const sampleRoot = path.join(path.resolve(__dirname, '../../dist-extensions/samples'), '/');
       const resolvedPath = path.join(sampleRoot, this.path);
       if (resolvedPath.startsWith(sampleRoot)) {
         const compressedPath = `${resolvedPath}.br`;
