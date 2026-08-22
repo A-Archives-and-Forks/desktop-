@@ -385,8 +385,12 @@ class EditorWindow extends ProjectRunningWindow {
     });
 
     this.ipc.handle('show-save-file-picker', async (event, suggestedName) => {
+      const lastDirectory = path.join(settings.lastDirectory, '/');
+      const joinedPath = path.join(lastDirectory, suggestedName);
+      const safeJoinedPath = joinedPath.startsWith(lastDirectory) ? joinedPath : lastDirectory;
+
       const result = await dialog.showSaveDialog(this.window, {
-        defaultPath: path.join(settings.lastDirectory, suggestedName),
+        defaultPath: safeJoinedPath,
         filters: [
           {
             name: 'Scratch 3 Project',
